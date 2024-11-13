@@ -1,0 +1,62 @@
+# Ignore build directories
+[Bb]in/
+[Oo]bj/
+x64/
+x86/
+SIPADPBT/
+
+# Ignore Visual Studio files
+.vscode/
+.vs/
+*.vcxproj.user
+*.vcxproj.filters
+*.suo
+*.user
+*.log
+*.tlog
+*.pdb
+*.obj
+*.o
+*.idb
+*.opendb
+*.VC.db
+*.VC.VC.opendb
+*.cache
+*.ncb
+*.aps
+*.psess
+*.sdf
+
+# Ignore CMake generated files
+CMakeFiles/
+CMakeCache.txt
+CMakeScripts/
+Testing/
+AppPackages/
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+
+# Ignore NuGet packages and build output
+*.nupkg
+*.snupkg
+packages/
+project.lock.json
+project.fragment.lock.json
+
+# Ignore WinUI build files
+App.g.i.cpp
+App.g.cpp
+App.xaml.g.i.h
+App.xaml.g.h
+pch.g.h
+Package.appxmanifest.g.h
+
+# Ignore backup and temporary files
+*.bak
+*.swp
+*.tmp
+
+# Ignore generated files directory
+Generated Files/

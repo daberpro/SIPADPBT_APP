@@ -1,0 +1,9 @@
+namespace SIPADPBT{
+	runtimeclass ModelDisease : Microsoft.UI.Xaml.Data.INotifyPropertyChanged {
+		ModelDisease(String name,String description, Int32 index, Double precentage);
+		String name;
+		String description;
+		Double precentage;
+		Int32 index;
+	}
+}

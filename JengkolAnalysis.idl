@@ -1,0 +1,13 @@
+import "Model.idl";
+import "ModelDisease.idl";
+import "CheckBoolean.idl";
+namespace SIPADPBT
+{
+    [default_interface]
+    runtimeclass JengkolAnalysis : Microsoft.UI.Xaml.Controls.Page
+    {
+        JengkolAnalysis();
+        Windows.Foundation.Collections.IObservableVector<Model> questionnaire{ get; };
+        Windows.Foundation.Collections.IObservableVector<ModelDisease> disease{ get; };
+    }
+}

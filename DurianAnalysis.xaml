@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="SIPADPBT.DurianAnalysis"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SIPADPBT"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    NavigationCacheMode="Enabled"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <local:CheckBoolean x:Key="ConvertBoolValue"/>
+    </UserControl.Resources>
+
+    <Grid Background="{ThemeResource SolidBackgroundFillColorSecondaryBrush}" x:Name="main_panel" HorizontalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="1.5*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2.8*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Border
+        Grid.Row="0"
+        Grid.Column="0"
+        Background="{ThemeResource SolidBackgroundFillColorTertiaryBrush}"
+    />
+            <StackPanel 
+        Grid.Row="0" 
+        Grid.Column="0" 
+        Orientation="Vertical" 
+        HorizontalAlignment="Center" 
+        VerticalAlignment="Center"
+        Padding="10"
+    >
+                <TextBlock  Style="{ThemeResource TitleLargeTextBlockStyle}" Text="SIPADPBT" />
+                <TextBlock  Style="{ThemeResource BodyTextBlockStyle}" Text="Sistem pakar deteksi dini penyakit bibit tanaman (SIPADPBT)" />
+                <TextBlock  Style="{ThemeResource BodyStrongTextBlockStyle}" Text="Perangkat lunak untuk membantu menganalisis penyakit pada bibit tanaman " />
+            </StackPanel>
+
+            <Image 
+                Source="ms-appx:///Assets/durian.jpg"
+                Grid.Column="1"
+                Grid.Row="0"
+                HorizontalAlignment="Left"
+                Margin="0,0,0,0"
+                Stretch="UniformToFill"
+            />
+
+        </Grid>
+
+        <Grid
+    Grid.Column="0"
+    Grid.Row="1"    
+>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="1.5*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <ScrollView Background="{ThemeResource SolidBackgroundFillColorSecondaryBrush}" Padding="0,0,0,20" Grid.Column="0" Grid.Row="0" ContentOrientation="Vertical" HorizontalAlignment="Stretch">
+                <StackPanel>
+                    <TextBlock Style="{ThemeResource TitleTextBlockStyle}" Padding="20,20,0,0" Text="Symptoms" />
+                    <TextBlock Padding="20,0,0,0" Text="Gejala - gejala pada bibit tanaman" Margin="0,0,0,0" />
+                    <TextBlock Padding="20,0,0,0" Text="Durian (Durio)" Margin="0,0,0,8" />
+                    <ItemsRepeater ItemsSource="{x:Bind questionnaire}">
+                        <ItemsRepeater.ItemTemplate>
+                            <DataTemplate x:DataType="local:Model">
+                                <StackPanel Padding="20,20,20,0" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                                    <RadioButtons SelectionChanged="ChangeSelection" DataContext="{x:Bind}" Grid.Column="0" Grid.Row="0">
+                                        <RadioButtons.Header>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                                <TextBlock Margin="0,0,5,0" Text="Apakah, "/>
+                                                <TextBlock Text="{x:Bind question,Mode=OneWay}" />
+                                            </StackPanel>
+                                        </RadioButtons.Header>
+                                        <RadioButton IsChecked="{x:Bind isRight, Mode=OneWay}" Content="Ya" />
+                                        <RadioButton IsChecked="{x:Bind isRight, Converter={StaticResource ConvertBoolValue}, Mode=OneWay}" Content="Tidak" />
+                                    </RadioButtons>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsRepeater.ItemTemplate>
+                    </ItemsRepeater>
+                </StackPanel>
+            </ScrollView>
+            <ScrollView Background="{ThemeResource SolidBackgroundFillColorBase}" Grid.Column="1" Grid.Row="0" ContentOrientation="Vertical" HorizontalAlignment="Stretch">
+                <StackPanel Padding="20" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                    <TextBlock Style="{ThemeResource TitleTextBlockStyle}" Text="Menus" />
+                    <TextBlock Margin="0,0,0,16" Text="Analisis penyakit berdasarkan gejala - gejala pada bibit tanaman" />
+                    <StackPanel Margin="0,0,0,16" Spacing="8" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <Button Click="Analyze">
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <TextBlock Margin="0,0,8,0" Text="Analyze" />
+                                    <FontIcon FontSize="14" Glyph="&#xE721;" />
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                        <Button Click="reset">
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <TextBlock Margin="0,0,8,0" Text="Clear" />
+                                    <FontIcon FontSize="14" Glyph="&#xE894;" />
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                        <Button Click="Explain">
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <TextBlock Margin="0,0,8,0" Text="Explain" />
+                                    <FontIcon FontSize="14" Glyph="&#xE8BC;" />
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                    </StackPanel>
+                    <ItemsRepeater ItemsSource="{x:Bind disease, Mode=OneWay}">
+                        <ItemsRepeater.ItemTemplate>
+                            <DataTemplate x:DataType="local:ModelDisease">
+                                <Grid Margin="0,0,0,10" CornerRadius="5" Background="{ThemeResource ControlFillColorSecondaryBrush}" Padding="10" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.15*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="0.3*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+
+                                    <Button Click="Show_Info" Grid.Column="0" Grid.Row="1">
+                                        <FontIcon Glyph="&#xE946;" />
+                                    </Button>
+                                    <TeachingTip Title="{x:Bind name, Mode=OneWay}" Subtitle="About this disease">
+                                    </TeachingTip>
+                                    <StackPanel Grid.Column="1" Grid.Row="0"  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+
+                                        <TextBlock 
+                                    VerticalAlignment="Center" 
+                                    TextAlignment="Center"
+                                    HorizontalAlignment="Left"
+                                    Margin="0,0,16,0" 
+                                     
+                                    Text="{x:Bind name, Mode=OneWay}" 
+                                    />
+
+                                        <TextBlock 
+                                    VerticalAlignment="Center" 
+                                    TextAlignment="Center"
+                                    HorizontalAlignment="Left"
+                                    Margin="0,0,0,0"
+                                    Text="{x:Bind precentage, Mode=OneWay}" 
+                                    />
+                                        <TextBlock 
+                                     VerticalAlignment="Center" 
+                                     TextAlignment="Center"
+                                     HorizontalAlignment="Left"
+                                     Margin="0,0,16,0" 
+                                     
+                                     Text="%" 
+                                     />
+                                    </StackPanel>
+                                    <ProgressRing
+                                Foreground="Red"
+                                Grid.Column="2"
+                                Grid.Row="0"
+                                Value="{x:Bind precentage, Mode=OneWay}"
+                                HorizontalAlignment="Right"
+                                IsIndeterminate="False"
+                                Background="White"
+                            />
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsRepeater.ItemTemplate>
+                    </ItemsRepeater>
+
+                </StackPanel>
+            </ScrollView>
+        </Grid>
+    </Grid>
+</Page>

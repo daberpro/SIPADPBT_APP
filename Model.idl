@@ -1,0 +1,8 @@
+namespace SIPADPBT{
+	runtimeclass Model : Microsoft.UI.Xaml.Data.INotifyPropertyChanged {
+		Model(String question, Boolean isRight, Int32 index);
+		String question;
+		Boolean isRight;
+		Int32 index;
+	}
+}

@@ -1,0 +1,11 @@
+import "Model.idl";
+import "ModelDisease.idl";
+
+namespace SIPADPBT
+{
+    [default_interface]
+    runtimeclass MainWindow : Microsoft.UI.Xaml.Window
+    {
+        MainWindow();
+    }
+}

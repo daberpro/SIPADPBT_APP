@@ -1,0 +1,131 @@
+{
+  "jengkol": {
+    "gejala": [
+      "Daun Menguning",
+      "Daun Layu",
+      "Pertumbuhan Terhambat",
+      "Akar membusuk",
+      "Akar berwarna cokelat atau hitam",
+      "Bercak cokelat atau hitam pada daun",
+      "Daun berlubang dan mengering",
+      "Bercak meluas ke batang atau buah",
+      "Bercak Jingga kekuningan pada daun",
+      "Daun rontok",
+      "Daun Menguning dari bagian bawah tanaman",
+      "Batang terlihat cokelat atau hitam",
+      "Luka atau bercak warna gelap pada batang",
+      "Batang membengkak dan retak",
+      "Lapisan putih seperti tepung pada permukaan daun",
+      "Daun menggulung",
+      "Bercak dengan pinggiran kuning pada daun",
+      "Daun mengering",
+      "Akar membengkak seperti simpul atau bintil",
+      "Lapisan hitam seperti jelaga pada daun",
+      "Daun terlihat kotor dan tertutupi jamur"
+    ],
+    "penyakit": [
+      {
+        "nama": "Busuk Akar",
+        "deskripsi": ""
+      },
+      {
+        "nama": "Antraknosa",
+        "deskripsi": ""
+      },
+      {
+        "nama": "Karat Daun (Rust)",
+        "deskripsi": ""
+      },
+      {
+        "nama": "Layu Fusarium",
+        "deskripsi": ""
+      },
+      {
+        "nama": "Busuk Batang (Canker)",
+        "deskripsi": ""
+      },
+      {
+        "nama": "Penyakit Tepung (Powdery Mildew)",
+        "deskripsi": ""
+      },
+      {
+        "nama": "Bercak Daun (Leaf Spot)",
+        "deskripsi": ""
+      },
+      {
+        "nama": "Akar Bengkak (Root Knot)",
+        "deskripsi": ""
+      },
+      {
+        "nama": "Layu Bakteri",
+        "deskripsi": ""
+      },
+      {
+        "nama": "Embun Jelaga (Sooty Mold)",
+        "deskripsi": ""
+      },
+      {
+        "nama": "Tidak ada penyakit",
+        "deskripsi": ""
+      }
+    ]
+  },
+  "durian": {
+    "gejala": [
+      "Daun menguning",
+      "Pertumbuhan terhambat",
+      "akar membusuk dan bau",
+      "daun rontok",
+      "batang busuk",
+      "akar memiliki bercak hitam",
+      "bercak cokelat pada daun",
+      "bercak hitam pada batang",
+      "bercak beludru pada batang",
+      "daun bagian bawah menguning",
+      "pola bercak pada daun",
+      "pertumbuhan kerdil",
+      "deformitas pada daun",
+      "daun layu",
+      "daun melengkung atau menggulung",
+      "lapisan serbuk putih pada daun"
+    ],
+    "penyakit": [
+      {
+        "nama": "Busuk Akar (Root Rot)",
+        "deskripsi": ""
+      },
+      {
+        "nama": "Penyakit Jamur Phytophthora",
+        "deskripsi": ""
+      },
+      {
+        "nama": "Penyakit Cendawan (Fungal Diseases)",
+        "deskripsi": ""
+      },
+      {
+        "nama": "Penyakit Kuning Daun",
+        "deskripsi": ""
+      },
+      {
+        "nama": "Penyakit Virus",
+        "deskripsi": ""
+      },
+      {
+        "nama": "Penyakit Bakteri",
+        "deskripsi": ""
+      },
+      {
+        "nama": "Penyakit Daun Curl",
+        "deskripsi": ""
+      },
+      {
+        "nama": "Penyakit Embun Tepung",
+        "deskripsi": ""
+      },
+      {
+        "nama": "Tidak ada penyakit",
+        "deskripsi": ""
+      }
+    ]
+  }
+}

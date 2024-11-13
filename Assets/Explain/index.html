@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		SIPADPBT
+	</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+		* {
+			background: transparent;
+			box-sizing:border-box;
+			font-family: sans-serif;
+		}
+		table {
+			border: 1px solid #6e6e6e;
+			padding: 20px;
+			border-radius: 10px;
+		}
+		table tr th, table tr td {
+			color: #6E6E6E;
+			text-align: center;
+			padding: 15px;
+		}
+		html, body {
+			margin: 0px;
+			padding: 0px;
+			width: 100%;
+			height: 100%;
+		}
+
+		canvas{
+			width:300px;
+			height:300px;
+		}
+
+		.container {
+			width: 100%;
+			height: fit-content;
+			display: flex;
+			justify-content:flex-start;
+			align-items:center;
+			flex-direction: column;
+			gap: 20px;
+			padding: 20px;
+			margin-bottom: 50px;
+		}
+
+		.items {
+			width: 100%;
+			height: fit-content;
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+			flex-wrap: wrap;
+			gap: 20px;
+		}
+
+		.iv{
+			font-family: sans-serif;
+			font-weight: 200;
+			color: #888;
+			font-size: 18px;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="container">
+		<div class="items">
+			<canvas name="positive"></canvas>
+			<canvas name="negative"></canvas>
+		</div>
+		<p class="iv">Interpretable Value: </p>
+		<div class="items">
+			<table>
+				<thead>
+					<tr>
+						<th>Symptomp</th>
+						<th>Value</th>
+						<th>Label</th>
+					</tr>
+				</thead>
+				<tbody class="data_table">
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<script src="chart.js"></script>
+	<script>
+		const explain = m => {
+			const all_data = {
+				positive_values: {
+					values: [],
+					labels: []
+				},
+				negative_values: {
+					values: [],
+					labels: []
+				}
+			};
+			const sliced_data = m.data.slice(1, m.data.length);
+			const canvas = document.querySelectorAll("canvas");
+			sliced_data.forEach((x, i) => {
+				if (x > 0) {
+					all_data.positive_values.values.push(x);
+					all_data.positive_values.labels.push(m.labels[i]);
+				} else if (x < 0) {
+					all_data.negative_values.values.push(x);
+					all_data.negative_values.labels.push(m.labels[i]);
+				}
+			});
+
+			document.querySelector(".iv").innerHTML = `Interpretable Value: ${m.interpretable_value}`;
+
+			const data_table = document.querySelector(".data_table");
+			sliced_data.forEach((d,i) => {
+				const container = document.createElement("tr");
+				const Symtomp = document.createElement("td");
+				const Value = document.createElement("td");
+				const Label = document.createElement("td");
+
+				Symtomp.innerText = m.labels[i];
+				Value.innerText = d;
+				Label.innerText = (d > 0) ? `p${i + 1}` : `n${i + 1}`;
+				container.appendChild(Symtomp);
+				container.appendChild(Value);
+				container.appendChild(Label);
+
+				data_table.appendChild(container);
+
+			});
+
+			canvas.forEach(element => {
+				const name = element.getAttribute("name");
+				const { values, labels } = all_data[`${name}_values`] || { values: [], labels: [] };
+				let total_data = 0;
+				values.forEach(d => total_data += d);
+
+				new Chart(element, {
+					type: 'bar',
+					data: {
+						labels: labels.map((d,i) => `${name[0]}${i+1}`),
+						datasets: [{
+							label: `${name.toUpperCase()} Feature Change Value`,
+							data: values,
+							backgroundColor: values.map(d => d / total_data).map(d => `hsla(${(name === "positive")? 208 : 345},100%,70%,${0.5 + d})`),
+							hoverOffset: 2
+						}]
+					},
+					options: {
+						responsive: false,
+						maintainAspectRatio: false
+					}
+				});
+
+			});
+
+		}
+	</script>
+
+</body>
+</html>

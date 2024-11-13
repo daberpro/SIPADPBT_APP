@@ -1,0 +1,6 @@
+namespace SIPADPBT{
+	[default_interface]
+	runtimeclass CheckBoolean : Microsoft.UI.Xaml.Data.IValueConverter {
+		CheckBoolean();
+	}
+}
