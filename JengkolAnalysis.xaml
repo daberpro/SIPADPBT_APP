@@ -89,8 +89,8 @@
                                                 <TextBlock Text="{x:Bind question,Mode=OneWay}" />
                                             </StackPanel>
                                         </RadioButtons.Header>
-                                        <RadioButton IsChecked="{x:Bind selectedOption, Mode=TwoWay, Converter={StaticResource IsYes}}" Content="Ya" />
-                                        <RadioButton IsChecked="{x:Bind selectedOption, Mode=TwoWay, Converter={StaticResource IsNo}}" Content="Tidak" />
+                                        <RadioButton IsChecked="{x:Bind selectedOption, Mode=OneWay, Converter={StaticResource IsYes}}" Content="Ya" />
+                                        <RadioButton IsChecked="{x:Bind selectedOption, Mode=OneWay, Converter={StaticResource IsNo}}" Content="Tidak" />
                                     </RadioButtons>
                                 </StackPanel>
                             </DataTemplate>
