@@ -10,7 +10,8 @@
     mc:Ignorable="d">
 
     <UserControl.Resources>
-        <local:CheckBoolean x:Key="ConvertBoolValue"/>
+        <local:CheckBoolean x:Key="IsYes"/>
+        <local:CheckNegation x:Key="IsNo"/>
     </UserControl.Resources>
 
     <Grid Background="{ThemeResource SolidBackgroundFillColorSecondaryBrush}" x:Name="main_panel" HorizontalAlignment="Stretch">
@@ -81,15 +82,15 @@
                         <ItemsRepeater.ItemTemplate>
                             <DataTemplate x:DataType="local:Model">
                                 <StackPanel Padding="20,20,20,0" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Top">
-                                    <RadioButtons SelectionChanged="ChangeSelection" DataContext="{x:Bind}" Grid.Column="0" Grid.Row="0">
+                                    <RadioButtons Loaded="SelectionLoaded" SelectionChanged="ChangeSelection" DataContext="{x:Bind}" Grid.Column="0" Grid.Row="0">
                                         <RadioButtons.Header>
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
                                                 <TextBlock Margin="0,0,5,0" Text="Apakah, "/>
                                                 <TextBlock Text="{x:Bind question,Mode=OneWay}" />
                                             </StackPanel>
                                         </RadioButtons.Header>
-                                        <RadioButton IsChecked="{x:Bind isRight, Mode=OneWay}" Content="Ya" />
-                                        <RadioButton IsChecked="{x:Bind isRight, Converter={StaticResource ConvertBoolValue}, Mode=OneWay}" Content="Tidak" />
+                                        <RadioButton IsChecked="{x:Bind selectedOption, Mode=TwoWay, Converter={StaticResource IsYes}}" Content="Ya" />
+                                        <RadioButton IsChecked="{x:Bind selectedOption, Mode=TwoWay, Converter={StaticResource IsNo}}" Content="Tidak" />
                                     </RadioButtons>
                                 </StackPanel>
                             </DataTemplate>
@@ -118,7 +119,7 @@
                                 </StackPanel>
                             </Button.Content>
                         </Button>
-                        <Button Click="Explain">
+                        <Button x:Name="ExplainButton"  Click="Explain">
                             <Button.Content>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                     <TextBlock Margin="0,0,8,0" Text="Explain" />
@@ -126,13 +127,15 @@
                                 </StackPanel>
                             </Button.Content>
                         </Button>
+                        <TeachingTip x:Name="InfoExplain" Target="{x:Bind ExplainButton}" Title="Info" Subtitle="Tidak ada input yang dimasukan, silahkan masukan input kemudian lakukan analisis untuk mendapatkan hasil penjelasan">
+                        </TeachingTip>
                     </StackPanel>
                     <ItemsRepeater ItemsSource="{x:Bind disease, Mode=OneWay}">
                         <ItemsRepeater.ItemTemplate>
                             <DataTemplate x:DataType="local:ModelDisease">
                                 <Grid Margin="0,0,0,10" CornerRadius="5" Background="{ThemeResource ControlFillColorSecondaryBrush}" Padding="10" HorizontalAlignment="Stretch" VerticalAlignment="Center">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="0.15*" />
+                                        <ColumnDefinition MinWidth="50" Width="0.15*" />
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="0.3*" />
                                     </Grid.ColumnDefinitions>
@@ -143,7 +146,7 @@
                                     <Button Click="Show_Info" Grid.Column="0" Grid.Row="1">
                                         <FontIcon Glyph="&#xE946;" />
                                     </Button>
-                                    <TeachingTip Title="{x:Bind name, Mode=OneWay}" Subtitle="About this disease">
+                                    <TeachingTip Title="{x:Bind name, Mode=OneWay}" Subtitle="{x:Bind description, Mode=OneWay}">
                                     </TeachingTip>
                                     <StackPanel Grid.Column="1" Grid.Row="0"  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
                                         

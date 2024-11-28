@@ -14,7 +14,7 @@
         <TextBlock Style="{ThemeResource BodyStrongTextBlockStyle}" Text="Appearance" />
         <Grid CornerRadius="5" Background="{ThemeResource ControlFillColorSecondaryBrush}" Padding="20" HorizontalAlignment="Stretch" VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.1*" />
+                <ColumnDefinition MinWidth="50" Width="0.1*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="0.5*" />
             </Grid.ColumnDefinitions>
@@ -41,7 +41,7 @@
         </Grid>
         <Grid CornerRadius="5" Background="{ThemeResource ControlFillColorSecondaryBrush}" Padding="20" HorizontalAlignment="Stretch" VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.1*" />
+                <ColumnDefinition MinWidth="50" Width="0.1*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="0.5*" />
             </Grid.ColumnDefinitions>

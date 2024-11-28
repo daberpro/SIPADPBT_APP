@@ -3,6 +3,7 @@
 #include "JengkolAnalysis.g.h"
 #include "ModelDisease.h"
 #include "Model.h"
+#include "CheckNegation.h"
 #include "CheckBoolean.h"
 
 namespace winrt::SIPADPBT::implementation
@@ -21,6 +22,7 @@ namespace winrt::SIPADPBT::implementation
         void Show_Info(IInspectable const&, Microsoft::UI::Xaml::RoutedEventArgs const&);
         void Explain(IInspectable const&, Microsoft::UI::Xaml::RoutedEventArgs const&);
         void reset(IInspectable const&, Microsoft::UI::Xaml::RoutedEventArgs const&);
+        void SelectionLoaded(IInspectable const&, Microsoft::UI::Xaml::RoutedEventArgs const&);
 
         nlohmann::json m_dataToExplain = R"({
             "data": [],

@@ -108,15 +108,29 @@ namespace winrt::SIPADPBT::implementation
             this->m_questionnaire.IndexOf(dataContext, indexData);
 
             if (selectedChildElement) {
-                if (selectedChildElement.Content().as<winrt::hstring>() == L"Ya") {
-                    this->m_questionnaire.GetAt(indexData).isRight(true);
+                if (selectedChildElement.Content().as<winrt::hstring>() == L"Ya" || this->m_questionnaire.GetAt(indexData).isRight()) {
+                    this->m_questionnaire.GetAt(indexData).selectedOption(winrt::SIPADPBT::Option::Yes);
                 }
-                else {
-                    this->m_questionnaire.GetAt(indexData).isRight(false);
+                else if (!this->m_questionnaire.GetAt(indexData).isRight()) {
+                    this->m_questionnaire.GetAt(indexData).selectedOption(winrt::SIPADPBT::Option::No);
                 }
             }
         }
+
     };
+
+    void DurianAnalysis::SelectionLoaded(IInspectable const& sender, Microsoft::UI::Xaml::RoutedEventArgs const&) {
+        auto& element = sender.as<Microsoft::UI::Xaml::Controls::RadioButtons>();
+        auto& dataContext = element.DataContext().as<winrt::SIPADPBT::Model>();
+        uint32_t indexData;
+        this->m_questionnaire.IndexOf(dataContext, indexData);
+        if (this->m_questionnaire.GetAt(indexData).isRight()) {
+            element.SelectedIndex(0);
+        }
+        else {
+            element.SelectedIndex(1);
+        }
+    }
 
     void DurianAnalysis::Show_Info(IInspectable const& sender, Microsoft::UI::Xaml::RoutedEventArgs const&) {
 
@@ -129,6 +143,18 @@ namespace winrt::SIPADPBT::implementation
     };
 
     void DurianAnalysis::Explain(IInspectable const& sender, Microsoft::UI::Xaml::RoutedEventArgs const&) {
+
+        uint32_t total_input_is_right = 0;
+        for (auto& input_data : this->m_questionnaire) {
+            if (input_data.isRight()) {
+                total_input_is_right++;
+            }
+        }
+
+        if (total_input_is_right == 0) {
+            this->InfoExplain().IsOpen(true);
+            return;
+        }
 
         Windows::UI::Xaml::Interop::TypeName typenameTarget;
         typenameTarget.Name = L"SIPADPBT.Explaination";

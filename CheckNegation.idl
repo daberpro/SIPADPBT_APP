@@ -1,0 +1,6 @@
+namespace SIPADPBT{
+	[default_interface]
+	runtimeclass CheckNegation : Microsoft.UI.Xaml.Data.IValueConverter {
+		CheckNegation();
+	}
+}

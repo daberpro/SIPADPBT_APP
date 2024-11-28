@@ -145,6 +145,7 @@
       <DependentUpon>About.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
+    <ClInclude Include="CheckNegation.h" />
     <ClInclude Include="DurianAnalysis.xaml.h">
       <DependentUpon>DurianAnalysis.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -204,6 +205,7 @@
       <DependentUpon>About.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
+    <ClCompile Include="CheckNegation.cpp" />
     <ClCompile Include="DurianAnalysis.xaml.cpp">
       <DependentUpon>DurianAnalysis.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -244,6 +246,7 @@
       <SubType>Code</SubType>
     </Midl>
     <Midl Include="CheckBoolean.idl" />
+    <Midl Include="CheckNegation.idl" />
     <Midl Include="DurianAnalysis.idl">
       <DependentUpon>DurianAnalysis.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -355,9 +358,6 @@
       <DeploymentContent>true</DeploymentContent>
     </None>
     <None Include="Assets\Core\model-jengkol.bin">
-      <DeploymentContent>true</DeploymentContent>
-    </None>
-    <None Include="Assets\Core\settings.json">
       <DeploymentContent>true</DeploymentContent>
     </None>
     <None Include="Assets\Explain\chart.js">

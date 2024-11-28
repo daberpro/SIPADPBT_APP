@@ -8,6 +8,26 @@ namespace winrt::SIPADPBT::implementation
 
     Model::Model(hstring const& question, bool isRight, int32_t index) : m_question(question), m_isRight(isRight), m_index(index) {};
 
+    winrt::SIPADPBT::Option Model::selectedOption()
+    {
+        return this->m_selectedOption;
+    }
+    void Model::selectedOption(winrt::SIPADPBT::Option const& value)
+    {
+        if (this->m_selectedOption != value) {
+            this->m_selectedOption = value;
+            this->m_PropertyChanged(*this,Microsoft::UI::Xaml::Data::PropertyChangedEventArgs(L"selectedOption"));
+            
+            if (this->m_selectedOption == winrt::SIPADPBT::Option::Yes) {
+                this->isRight(true);
+            }
+            if (this->m_selectedOption == winrt::SIPADPBT::Option::No) {
+                this->isRight(false);
+            }
+
+        }
+    }
+
     hstring Model::question()
     {
         return this->m_question;

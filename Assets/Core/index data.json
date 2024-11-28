@@ -26,47 +26,58 @@
     "penyakit": [
       {
         "nama": "Busuk Akar",
-        "deskripsi": ""
+        "deskripsi": "Busuk akar adalah penyakit yang disebabkan oleh jamur patogen seperti Phytophthora spp. dan Pythium spp., menyebabkan akar membusuk dan tanaman layu. Penyakit ini umumnya muncul di tanah dengan drainase buruk."
+
       },
       {
         "nama": "Antraknosa",
-        "deskripsi": ""
+        "deskripsi": "Penyakit ini disebabkan oleh jamur Colletotrichum spp., yang mengakibatkan bercak hitam pada daun dan buah, sering muncul di lingkungan lembap."
+
       },
       {
         "nama": "Karat Daun (Rust)",
-        "deskripsi": ""
+        "deskripsi": "Karat daun disebabkan oleh jamur Puccinia spp., menghasilkan bercak kuning hingga jingga pada daun yang dapat menyebar dengan cepat melalui angin."
+
       },
       {
         "nama": "Layu Fusarium",
-        "deskripsi": ""
+        "deskripsi": "Penyakit ini disebabkan oleh jamur Fusarium oxysporum, yang menyerang sistem pembuluh tanaman dan menyebabkan layu, terutama pada suhu tinggi."
+
       },
       {
         "nama": "Busuk Batang (Canker)",
-        "deskripsi": ""
+        "deskripsi": "Busuk batang disebabkan oleh Botryosphaeria spp., menghasilkan luka dan retakan pada batang yang dapat menyebabkan kematian jaringan."
+
       },
       {
         "nama": "Penyakit Tepung (Powdery Mildew)",
-        "deskripsi": ""
+        "deskripsi": "Jamur Erysiphales spp. menyebabkan lapisan putih seperti tepung pada daun, menghambat fotosintesis tanaman."
+
       },
       {
         "nama": "Bercak Daun (Leaf Spot)",
-        "deskripsi": ""
+        "deskripsi": "Bercak daun adalah penyakit umum yang disebabkan oleh berbagai jamur seperti Alternaria spp. dan menyebabkan bercak-bercak gelap pada permukaan daun."
+
       },
       {
         "nama": "Akar Bengkak (Root Knot)",
-        "deskripsi": ""
+        "deskripsi": "Akar bengkak disebabkan oleh nematoda Meloidogyne spp. yang menyebabkan deformasi akar berbentuk simpul."
+
       },
       {
         "nama": "Layu Bakteri",
-        "deskripsi": ""
+        "deskripsi": "Penyakit ini disebabkan oleh Ralstonia solanacearum yang menyerang jaringan pembuluh, menyebabkan daun layu secara mendadak."
+
       },
       {
         "nama": "Embun Jelaga (Sooty Mold)",
-        "deskripsi": ""
+        "deskripsi": "Embun jelaga muncul akibat tumbuhnya jamur pada ekskresi serangga, menciptakan lapisan hitam di permukaan daun."
+
       },
       {
         "nama": "Tidak ada penyakit",
-        "deskripsi": ""
+        "deskripsi": "Tanaman tidak menunjukkan gejala penyakit atau kerusakan signifikan."
+        
       }
     ]
   },
@@ -92,39 +103,48 @@
     "penyakit": [
       {
         "nama": "Busuk Akar (Root Rot)",
-        "deskripsi": ""
+        "deskripsi": "Penyakit ini disebabkan oleh jamur Phytophthora spp., menyebabkan akar membusuk dan bau busuk."
+
       },
       {
         "nama": "Penyakit Jamur Phytophthora",
-        "deskripsi": ""
+        "deskripsi": "Serangan Phytophthora spp. pada batang dan daun menghasilkan bercak beludru dan pembusukan batang."
+
       },
       {
         "nama": "Penyakit Cendawan (Fungal Diseases)",
-        "deskripsi": ""
+        "deskripsi": "Penyakit ini mencakup berbagai jamur yang menyerang durian, seperti Alternaria spp. atau Colletotrichum spp., menghasilkan bercak daun."
+
       },
       {
         "nama": "Penyakit Kuning Daun",
-        "deskripsi": ""
+        "deskripsi": "Penyakit fisiologis atau akibat infeksi bakteri yang membuat daun bagian bawah menguning."
+
       },
       {
         "nama": "Penyakit Virus",
-        "deskripsi": ""
+        "deskripsi": "Infeksi virus menyebabkan deformasi daun dan pertumbuhan terhambat."
+
       },
       {
         "nama": "Penyakit Bakteri",
-        "deskripsi": ""
+        "deskripsi": "Infeksi bakteri seperti Erwinia spp. menyebabkan pembusukan dan bercak cokelat pada batang."
+
       },
       {
         "nama": "Penyakit Daun Curl",
-        "deskripsi": ""
+        "deskripsi": "Penyakit ini menyebabkan daun melengkung akibat infeksi virus atau kondisi lingkungan buruk."
+
       },
       {
         "nama": "Penyakit Embun Tepung",
-        "deskripsi": ""
+        "deskripsi": "Jamur Erysiphales spp. menciptakan lapisan serbuk putih pada daun."
+
       },
       {
         "nama": "Tidak ada penyakit",
-        "deskripsi": ""
+        "deskripsi": "Tanaman tidak menunjukkan gejala penyakit."
+        
       }
     ]
   }

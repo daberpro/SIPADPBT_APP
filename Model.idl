@@ -1,8 +1,14 @@
 namespace SIPADPBT{
-	runtimeclass Model : Microsoft.UI.Xaml.Data.INotifyPropertyChanged {
-		Model(String question, Boolean isRight, Int32 index);
-		String question;
-		Boolean isRight;
-		Int32 index;
+enum Option 
+{
+	Yes = 1,
+	No = 0  
+};
+runtimeclass Model : Microsoft.UI.Xaml.Data.INotifyPropertyChanged {
+Model(String question, Boolean isRight, Int32 index);
+Option selectedOption;		
+String question;
+Boolean isRight;
+Int32 index;
 	}
 }

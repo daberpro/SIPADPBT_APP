@@ -29,26 +29,52 @@ namespace winrt::SIPADPBT::implementation
             if (this->ExtendsContentIntoTitleBar()) {
                 this->SetRegionsForCustomTitleBar();
             }
-            Windows::Storage::StorageFolder appInstallationPath = Windows::ApplicationModel::Package::Current().InstalledLocation();
-            Windows::Storage::StorageFolder assetsFolder = co_await appInstallationPath.GetFolderAsync(L"Assets");
-            Windows::Storage::StorageFolder coreFolder = co_await assetsFolder.GetFolderAsync(L"Core");
-            Windows::Storage::StorageFile settingsFile = co_await coreFolder.GetFileAsync(L"settings.json");
-
-            Windows::Storage::Streams::IRandomAccessStream stream = co_await settingsFile.OpenAsync(Windows::Storage::FileAccessMode::Read);
-            Windows::Storage::Streams::DataReader reader{ stream.GetInputStreamAt(0) };
-
-            uint32_t size = static_cast<uint32_t>(stream.Size());
-            co_await reader.LoadAsync(size);
-            nlohmann::json settings_data = nlohmann::json::parse(winrt::to_string(reader.ReadString(size)));
-
+            
             auto rootElement = this->RootElement();
+
+            // defeault settings
+            nlohmann::json settings_data = R"({
+                "default_theme": "Dark",
+                "navigation_style":  "Left"
+            })"_json;
+
+            // check if settings.json file has made
+            // if not creating it
+
+            Windows::Storage::StorageFolder localStorageFolder{
+                Windows::Storage::ApplicationData::Current().LocalFolder()
+            };
+
+            Windows::Storage::IStorageItem settings{ co_await localStorageFolder.TryGetItemAsync(L"settings.json") };
+            if (!settings) {
+                co_await localStorageFolder.CreateFileAsync(
+                    L"settings.json",
+                    Windows::Storage::CreationCollisionOption::ReplaceExisting
+                );
+                Windows::Storage::StorageFile settings_file{ co_await localStorageFolder.GetFileAsync(L"settings.json")};
+                co_await Windows::Storage::FileIO::WriteTextAsync(
+                    settings_file,
+                    winrt::to_hstring(settings_data.dump())
+                );
+            }
+            else {
+                Windows::Storage::StorageFile settings_file{ co_await localStorageFolder.GetFileAsync(L"settings.json") };
+                winrt::hstring raw_settings_text = co_await Windows::Storage::FileIO::ReadTextAsync(
+                    settings_file
+                );
+                settings_data = nlohmann::json::parse(
+                    winrt::to_string(raw_settings_text)
+                );
+            }
 
             // set default theme which load from 'settings.json' file
             if (strcmp((settings_data["default_theme"].template get<std::string>()).c_str(), "Dark") == 0) {
                 rootElement.RequestedTheme(winrt::Microsoft::UI::Xaml::ElementTheme::Dark);
+                this->switch_theme().IsOn(true);
             }
             else if (strcmp((settings_data["default_theme"].template get<std::string>()).c_str(), "Light") == 0) {
                 rootElement.RequestedTheme(winrt::Microsoft::UI::Xaml::ElementTheme::Light);
+                this->switch_theme().IsOn(false);
             }
 
             if (strcmp((settings_data["navigation_style"].template get<std::string>()).c_str(), "Left") == 0) {

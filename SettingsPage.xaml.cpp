@@ -12,18 +12,17 @@ namespace winrt::SIPADPBT::implementation
     SettingsPage::SettingsPage() {
         this->InitializeComponent();
         this->Loaded([&](IInspectable const&, RoutedEventArgs const&)-> Windows::Foundation::IAsyncAction {
-            Windows::Storage::StorageFolder appInstallationPath = Windows::ApplicationModel::Package::Current().InstalledLocation();
-            Windows::Storage::StorageFolder assetsFolder = co_await appInstallationPath.GetFolderAsync(L"Assets");
-            Windows::Storage::StorageFolder coreFolder = co_await assetsFolder.GetFolderAsync(L"Core");
-            Windows::Storage::StorageFile settingsFile = co_await coreFolder.GetFileAsync(L"settings.json");
-
-            Windows::Storage::Streams::IRandomAccessStream stream = co_await settingsFile.OpenAsync(Windows::Storage::FileAccessMode::Read);
-            Windows::Storage::Streams::DataReader reader{ stream.GetInputStreamAt(0) };
-
-            uint32_t size = static_cast<uint32_t>(stream.Size());
-            co_await reader.LoadAsync(size);
-            this->settings_file = settingsFile;
-            nlohmann::json settings_data = nlohmann::json::parse(reader.ReadString(size));
+            Windows::Storage::StorageFolder localStorageFolder{
+                Windows::Storage::ApplicationData::Current().LocalFolder()
+            };
+            Windows::Storage::StorageFile settings_file{ co_await localStorageFolder.GetFileAsync(L"settings.json") };
+            winrt::hstring raw_settings_text = co_await Windows::Storage::FileIO::ReadTextAsync(
+                settings_file
+            );
+            nlohmann::json settings_data = nlohmann::json::parse(
+                winrt::to_string(raw_settings_text)
+            );
+            this->settings_file = settings_file;
             this->settings_content = settings_data;
             this->theme_style().Content(
                 winrt::box_value(
@@ -54,7 +53,10 @@ namespace winrt::SIPADPBT::implementation
             winrt::to_hstring(this->settings_content.dump())
         );
 
+        auto& switchBtn = rootElement.FindName(L"switch_theme").as<Microsoft::UI::Xaml::Controls::ToggleSwitch>();
+        switchBtn.IsOn(false);
     };
+
     Windows::Foundation::IAsyncAction SettingsPage::changeToDarkTheme(Windows::Foundation::IInspectable const&, Microsoft::UI::Xaml::RoutedEventArgs const&) {
         auto& parentOfFrame = this->Frame().Parent().as<Microsoft::UI::Xaml::Controls::NavigationView>();
         auto& rootElement = parentOfFrame.Parent().as<Microsoft::UI::Xaml::Controls::Grid>();
@@ -66,7 +68,11 @@ namespace winrt::SIPADPBT::implementation
             this->settings_file,
             winrt::to_hstring(this->settings_content.dump())
         );
+
+        auto& switchBtn = rootElement.FindName(L"switch_theme").as<Microsoft::UI::Xaml::Controls::ToggleSwitch>();
+        switchBtn.IsOn(true);
     };
+
     Windows::Foundation::IAsyncAction SettingsPage::changeToLeftNavStyle(Windows::Foundation::IInspectable const&, Microsoft::UI::Xaml::RoutedEventArgs const&) {
         auto& NavView = this->Frame().Parent().as<Microsoft::UI::Xaml::Controls::NavigationView>();
         NavView.PaneDisplayMode(Microsoft::UI::Xaml::Controls::NavigationViewPaneDisplayMode::Left);
