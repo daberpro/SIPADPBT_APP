@@ -5,7 +5,7 @@ dalam menyelesaikan Capstone Project
 
 ## Packages
 package - package yang dimuat oleh aplikasi dalam pengembangan fitur dan \
-dan penambahan beberapa fungsionalitas dan utilities \
+dan penambahan beberapa fungsionalitas dan utilities
 
 1. MlPack
 2. Nloohman JSON
